@@ -1,3 +1,5 @@
+const asset = (fileName) => `${import.meta.env.BASE_URL}asset/${fileName}`;
+
 export const employees = [
   {
     id: 'kaustubh-singh',
@@ -8,7 +10,7 @@ export const employees = [
     contact: '+91 92010 04208',
     dateOfJoining: '08 Dec 2023',
     timeZone: 'Full-time',
-    photo: '/asset/kaustubh-singh.png',
+    photo: asset('kaustubh-singh.png'),
     keySkills: [
       'Strategic Leadership & Vision',
       'Business Development & Growth',
@@ -29,7 +31,7 @@ export const employees = [
     contact: '9098964288',
     dateOfJoining: '18 Jan 2025',
     timeZone: 'Full-time',
-    photo: '/asset/yash-singh.png',
+    photo: asset('yash-singh.png'),
     keySkills: [
       'Technology Strategy & Vision',
       'System Architecture & Scalable Solutions',
@@ -60,7 +62,7 @@ export const employees = [
     contact: '8770569958',
     dateOfJoining: '21 Jan 2025',
     timeZone: 'Full-time',
-    photo: '/asset/shoaib.png',
+    photo: asset('shoaib.png'),
     keySkills: [
       'Data Engineering',
       'Data Science Solutions'
@@ -80,7 +82,7 @@ export const employees = [
     contact: '6281003819',
     dateOfJoining: '12 May 2025',
     timeZone: 'Full-time',
-    photo: '/asset/arhan.png',
+    photo: asset('arhan.png'),
     keySkills: [
       'Python', 'Generative AI', 'LLMs', 'Machine Learning', 'Deep Learning', 'Data engineering', 'Azure Data Factory', 'Azure Data Bricks', 'SQL', 'REST APIs', 'Django', 'Fast APIs', 'AWS EC2', 'AWS Glue', 'Azure Virtual Machines', 'Oracle Pl SQL', 'Google Big Query', 'DAG airflow', 'Celery', 'Celery Beat', 'Redis'
     ],
@@ -97,7 +99,7 @@ export const employees = [
     contact: '7999004564',
     dateOfJoining: '19 May 2025',
     timeZone: 'Full-time',
-    photo: '/asset/ritu.png',
+    photo: asset('ritu.png'),
     keySkills: [
       'Revenue Operations Management',
       'Team Management',
@@ -119,7 +121,7 @@ export const employees = [
     contact: '88898 90819',
     dateOfJoining: '7 July 2025',
     timeZone: 'Morning',
-    photo: '/asset/pratiksha.png',
+    photo: asset('pratiksha.png'),
     keySkills: [
       'SQL', 'Python', 'PySpark', 'AWS, GCP & Azure basics', 'Databricks', 'Snowflake', 'DBT', 'Looker', 'Data pipelines & ETL'
     ],
@@ -135,7 +137,7 @@ export const employees = [
     contact: '77250 46332',
     dateOfJoining: '1 September 2025',
     timeZone: 'Morning',
-    photo: '/asset/harsh.png',
+    photo: asset('harsh.png'),
     keySkills: [
       'Programming & Querying: Python, PySpark, Pandas, NumPy, Matplot',
       'Data Visualization Tools: Power BI, Tableau, Advanced MS Excel',
@@ -155,7 +157,7 @@ export const employees = [
     contact: '95896 49340',
     dateOfJoining: '21 July 2025',
     timeZone: 'Night',
-    photo: '/asset/shivansh.png',
+    photo: asset('shivansh.png'),
     keySkills: [
       'AWS', 'Azure', 'Databrick', 'Pyspark', 'Snowflack', 'Python', 'Sql', 'Terraform', 'docker', 'git', 'powerbi', 'Tablue', 'Excel'
     ],
@@ -171,7 +173,7 @@ export const employees = [
     contact: '72239 43707',
     dateOfJoining: '1 September 2025',
     timeZone: 'Evening',
-    photo: '/asset/akhil.png',
+    photo: asset('akhil.png'),
     keySkills: [
       'Cloud Platforms: Azure (Data Factory, Synapse, Blob Storage), AWS, Snowflake',
       'ETL/ELT Tools: dbt, Apache Airflow, GitHub Actions (CI/CD)',
@@ -194,7 +196,7 @@ export const employees = [
     contact: '96913 79799',
     dateOfJoining: '29 December 2025',
     timeZone: 'Intern',
-    photo: '/asset/anup.png',
+    photo: asset('anup.png'),
     keySkills: [
       'Cloud & Data Platforms- AWS, Azure',
       'Data Engineering- ETL/ELT: ADF, AWS Glue, Apache Airflow',
@@ -215,7 +217,7 @@ export const employees = [
     contact: '89897 65852',
     dateOfJoining: '20 November 2025',
     timeZone: 'Evening',
-    photo: '/asset/bharti-bisen.png',
+    photo: asset('bharti-bisen.png'),
     keySkills: [
       'Cloud Platforms: AWS- S3, Glue, Lambda, Athena , Redshift, SNS, Cloud Watch, Step Functions',
       'Microsoft Azure- ADF, Azure Data Lakes, Databricks, Synapse, Azure Devops',
@@ -236,7 +238,7 @@ export const employees = [
     contact: '7489 157 447',
     dateOfJoining: '20 November 2025',
     timeZone: 'Night',
-    photo: '/asset/muskan.png',
+    photo: asset('muskan.png'),
     keySkills: [
       'Programming & Data Processing- Python (NumPy, Pandas, Matplotlib, Seaborn), PySpark, Scala',
       'Database & Query Languages- SQL, NoSQL Databases, Microsoft SQL Server (SSMS, SSIS)',
@@ -257,7 +259,7 @@ export const employees = [
     contact: '62029 04532',
     dateOfJoining: '2nd February 2026',
     timeZone: 'Intern',
-    photo: '/asset/aryan.png',
+    photo: asset('aryan.png'),
     keySkills: [
       'Programming Languages- Python, SQL, Java, Kotlin',
       'Frameworks & Backend Development- Django REST Framework, FastAPI, Spring Core, Spring Data JPA, Hibernate, Java Servlets, Microservices Architecture',
@@ -279,7 +281,7 @@ export const employees = [
     contact: '79875 61495',
     dateOfJoining: '2nd February 2026',
     timeZone: 'Night',
-    photo: '/asset/shailesh.png',
+    photo: asset('shailesh.png'),
     keySkills: [
       'AWS', 'azure', 'Databricks', 'airflow', 'kafka', 'python', 'SQL', 'LangChain', 'langGraph', 'microsoft fabric', 'Django', 'fastAPI', 'Snowflake', 'SSIS', 'SSMS', 'ML', 'DL'
     ],
@@ -295,7 +297,7 @@ export const employees = [
     contact: '7489 701 579',
     dateOfJoining: '9 February 2026',
     timeZone: 'Morning',
-    photo: '/asset/anita.png',
+    photo: asset('anita.png'),
     keySkills: [
       'Python', 'SQL', 'snowflake', 'AWS (S3,glue)', 'SQL', 'Power BI', 'Tableau'
     ],
@@ -311,7 +313,7 @@ export const employees = [
     contact: '88716 29600',
     dateOfJoining: '3 February 2026',
     timeZone: 'Morning',
-    photo: '/asset/rizwan.png',
+    photo: asset('rizwan.png'),
     keySkills: [
       'Snowflake', 'Databricks', 'Apache Airflow', 'Azure(Virtual machine, Data Factory, Synapse)', 'AWS(EC2, S3, RDS, Athena, Redshift, GLUE)', 'Microsoft Fabric', 'Power BI'
     ],
@@ -327,7 +329,7 @@ export const employees = [
     contact: '79834 47762',
     dateOfJoining: '3 February 2026',
     timeZone: 'Morning',
-    photo: '/asset/harsh-pal.png',
+    photo: asset('harsh-pal.png'),
     keySkills: [
       'Aws', 'Azure', 'Data bricks', 'Snowflake', 'ML', 'DL', 'LLM', 'SQL servers'
     ],
@@ -343,7 +345,7 @@ export const employees = [
     contact: '93400 56291',
     dateOfJoining: '25 February 2026',
     timeZone: 'Morning',
-    photo: '/asset/akash.png',
+    photo: asset('akash.png'),
     keySkills: [
       'Programming & Querying: Python, PySpark, Pandas, NumPy, Matplot',
       'Data Visualization Tools: Power BI, Tableau, Advanced MS Excel',
@@ -363,7 +365,7 @@ export const employees = [
     contact: '72250 76506',
     dateOfJoining: '23 February 2025',
     timeZone: 'Morning',
-    photo: '/asset/sakshi.png',
+    photo: asset('sakshi.png'),
     keySkills: [
       'Data Engineering', 'Data Analytics', 'Machine Learning', 'Python', 'SQL', 'Kafka', 'Airflow', 'Databricks', 'Microsoft Fabric', 'Snowflake', 'Power BI', 'SSMS', 'SSIS', 'FastAPI', 'and cloud platforms like Azure and AWS'
     ],
@@ -379,7 +381,7 @@ export const employees = [
     contact: '62668 85103',
     dateOfJoining: '23 February 2026',
     timeZone: 'Morning',
-    photo: '/asset/anurag.png',
+    photo: asset('anurag.png'),
 
     keySkills: [
       'Python', 'SQL', 'Generative AI', 'LLMs & RAG', 'LangChain', 'LangGraph', 'Data Engineering', 'Apache Spark', 'FastAPI', 'AWS', 'Azure', 'Databricks', 'Snowflake', 'Vector DBs', 'Docker'
