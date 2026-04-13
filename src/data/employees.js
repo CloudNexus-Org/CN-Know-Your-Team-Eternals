@@ -1,5 +1,3 @@
-const asset = (fileName) => `${import.meta.env.BASE_URL}asset/${fileName}`;
-
 export const employees = [
   {
     id: 'kaustubh-singh',
@@ -10,7 +8,7 @@ export const employees = [
     contact: '+91 92010 04208',
     dateOfJoining: '08 Dec 2023',
     timeZone: 'Full-time',
-    photo: asset('kaustubh-singh.png'),
+    photo: '/asset/kaustubh-singh.png',
     keySkills: [
       'Strategic Leadership & Vision',
       'Business Development & Growth',
@@ -31,7 +29,7 @@ export const employees = [
     contact: '9098964288',
     dateOfJoining: '18 Jan 2025',
     timeZone: 'Full-time',
-    photo: asset('yash-singh.png'),
+    photo: '/asset/yash-singh.png',
     keySkills: [
       'Technology Strategy & Vision',
       'System Architecture & Scalable Solutions',
@@ -42,7 +40,7 @@ export const employees = [
       'Product Development & Lifecycle Management',
       'Stakeholder Management & Business Alignment'
     ],
-    professionalIntro: 'I\'m a passionate technologist currently working as the CTO, where I focus on building scalable solutions and driving innovation. A lot of my mindset comes from being a huge Lionel Messi and FC Barcelona fan—I believe in consistency, teamwork, and always striving to perform at the highest level. From following football with dedication to leading technology initiatives, I\'ve learned to combine strategic thinking with a hands-on approach to solve real problems.',
+    professionalIntro: "I am the CTO at CloudNexus, focused on building scalable systems and driving practical innovation. I lead architecture, engineering execution, and technology strategy while staying hands-on with delivery. I value consistency, teamwork, and high performance, and I solve business problems through reliable modern solutions.",
     technicalSkills: [
       { category: 'Programming', skills: 'Java, Python, JavaScript' },
       { category: 'Frameworks', skills: 'Spring Boot, React, Node.js' },
@@ -62,12 +60,12 @@ export const employees = [
     contact: '8770569958',
     dateOfJoining: '21 Jan 2025',
     timeZone: 'Full-time',
-    photo: asset('shoaib.png'),
+    photo: '/asset/shoaib.png',
     keySkills: [
       'Data Engineering',
       'Data Science Solutions'
     ],
-    professionalIntro: "I’m Shoaib Akhtar, serving as the Technical Head at the Founder’s Office, where I focus on driving innovation and building scalable technology solutions.\n\nWith a strong foundation in Data Engineering and Data Science, I work on developing systems that not only solve complex problems but also create meaningful impact. My approach revolves around continuous learning and staying updated with emerging technologies.\n\nI believe in fostering a culture of collaboration, excellence, and high performance within teams. By encouraging innovation and ownership, I aim to build an environment where ideas turn into impactful solutions.\n\nMy journey is driven by curiosity, leadership, and a passion for leveraging technology to create smarter and more efficient systems.",
+    professionalIntro: "I’m Shoaib Akhtar, Technical Head at the Founder’s Office. I build scalable, impact-driven solutions across data engineering and data science. I focus on continuous learning, innovation, and strong execution while encouraging ownership and collaboration within teams to transform ideas into practical systems that deliver measurable value.",
     technicalSkills: []
   },
 
@@ -82,11 +80,11 @@ export const employees = [
     contact: '6281003819',
     dateOfJoining: '12 May 2025',
     timeZone: 'Full-time',
-    photo: asset('arhan.png'),
+    photo: '/asset/arhan.png',
     keySkills: [
       'Python', 'Generative AI', 'LLMs', 'Machine Learning', 'Deep Learning', 'Data engineering', 'Azure Data Factory', 'Azure Data Bricks', 'SQL', 'REST APIs', 'Django', 'Fast APIs', 'AWS EC2', 'AWS Glue', 'Azure Virtual Machines', 'Oracle Pl SQL', 'Google Big Query', 'DAG airflow', 'Celery', 'Celery Beat', 'Redis'
     ],
-    professionalIntro: "I’m Arhan Mansoori, a Data Engineer and Data Scientist at Cloud Nexus, and my journey over the past one year has been both exciting and transformative.\n\nStarting with a strong passion for data and intelligent systems, I’ve had the opportunity to work on building scalable data pipelines and AI-driven solutions that solve real-world problems. Over time, I’ve grown across multiple domains including Generative AI, LLMs, Machine Learning, Deep Learning, and Data Engineering—constantly exploring how data and intelligence can come together to create impact.\n\nMy tech stack spans across Python, SQL, Azure Data Factory, Azure Databricks, AWS EC2, AWS Glue, Google BigQuery, Oracle PL/SQL, REST APIs, Django, FastAPI, Airflow, Celery, Redis, and cloud platforms like Azure and AWS. I enjoy designing end-to-end systems—from data ingestion to intelligent insights.\n\nAlongside my professional role, I also lead the Data Eternals team, where I focus on guiding, collaborating, and building with a group of passionate individuals. This experience has shaped my leadership style—encouraging innovation, ownership, and continuous learning within the team.\n\nWhat defines my journey is curiosity. I genuinely enjoy discussing new ideas, experimenting with emerging AI/ML technologies, and pushing myself to learn something new every day. Outside of work, I love traveling and visiting new places, which gives me fresh perspectives and keeps me energized.\n\nFor me, this one-year journey has been more than just work—it’s been about growth, exploration, and building something meaningful with both technology and people.",
+    professionalIntro: "I’m Arhan Mansoori, a Data Engineer and Data Scientist at CloudNexus. I design end-to-end data and AI solutions using modern cloud technologies and lead the Data Eternals team. I focus on scalable pipelines, intelligent systems, and collaborative delivery that turns complex requirements into reliable business outcomes.",
     technicalSkills: []
   },
 
@@ -98,8 +96,9 @@ export const employees = [
     location: 'Bhopal, MP',
     contact: '7999004564',
     dateOfJoining: '19 May 2025',
+    dateOfBirth: '20 Mar 2003',
     timeZone: 'Full-time',
-    photo: asset('ritu.png'),
+    photo: '/asset/ritu.png',
     keySkills: [
       'Revenue Operations Management',
       'Team Management',
@@ -107,7 +106,7 @@ export const employees = [
       'Problem-Solving & Decision Making',
       'Time Management & Multitasking'
     ],
-    professionalIntro: "I’m Ritu Waghmare, working in Revenue Operations (RevOps), where I focus on streamlining business processes and driving operational efficiency.\n\nIn my role as a Business Development Associate, I manage revenue operations alongside key HR responsibilities, ensuring smooth day-to-day functioning of the organization. I actively contribute to team management and coordination, helping maintain a productive and collaborative work environment.\n\nI take pride in my strong management skills, my ability to handle multiple responsibilities efficiently, and my problem-solving mindset. My approach is centered around organization, adaptability, and delivering consistent results.\n\nI am committed to continuous growth and strive to add value through effective execution and teamwork in every aspect of my work.",
+    professionalIntro: "I’m Ritu Waghmare, working in Revenue Operations and business development. I streamline workflows, improve cross-team coordination, and support daily execution with a strong process mindset. I focus on organization, efficiency, and consistent results while managing responsibilities effectively and contributing to growth through structured operations.",
     technicalSkills: []
   }
   ,
@@ -115,29 +114,31 @@ export const employees = [
   {
     id: 'pratiksha-nishad',
     name: 'Pratiksha Nishad',
-    jobTitle: 'Associate Data Engineer-1',
+    jobTitle: 'ADE-1',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '88898 90819',
     dateOfJoining: '7 July 2025',
+    dateOfBirth: '15 Sep 2003',
     timeZone: 'Morning',
-    photo: asset('pratiksha.png'),
+    photo: '/asset/pratiksha.png',
     keySkills: [
       'SQL', 'Python', 'PySpark', 'AWS, GCP & Azure basics', 'Databricks', 'Snowflake', 'DBT', 'Looker', 'Data pipelines & ETL'
     ],
-    professionalIntro: "I’m a Data Engineer who enjoys staying busy, taking on challenges, and continuously learning through real work. I believe growth comes from being involved, solving problems, and pushing through tasks—even when they’re not easy.\n\nI’m someone who prefers being actively engaged in work rather than staying in a comfort zone, and I see challenges as a part of the learning process.\n\nI would describe myself as a focused learner, a collaborative team player, and a data enthusiast, always looking to improve and adapt.\n\nOutside of work, I enjoy playing badminton and exploring new technologies, which keeps me both active and curious.",
+    professionalIntro: "I’m a Data Engineer who enjoys solving practical challenges and learning through hands-on work. I focus on building reliable data pipelines, improving data quality, and contributing as a collaborative team member. I value consistency, adaptability, and continuous growth while staying curious about new technologies and better practices.",
     technicalSkills: []
   },
   {
     id: 'harsh-mankar',
     name: 'Harsh Mankar',
-    jobTitle: 'Associate Data Engineer-1',
+    jobTitle: 'ADE-1',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '77250 46332',
     dateOfJoining: '1 September 2025',
+    dateOfBirth: '1 Oct 2004',
     timeZone: 'Morning',
-    photo: asset('harsh.png'),
+    photo: '/asset/harsh.png',
     keySkills: [
       'Programming & Querying: Python, PySpark, Pandas, NumPy, Matplot',
       'Data Visualization Tools: Power BI, Tableau, Advanced MS Excel',
@@ -145,19 +146,19 @@ export const employees = [
       'Web Technologies: Databricks, Snowflake, Apache Kafka, Docker, Airflow',
       'Cloud Technologies: AWS, Azure, Google Cloud'
     ],
-    professionalIntro: "I am Harsh Mankar and I am a Data Engineer who draws inspiration from beyond the screen to build smarter, more resilient systems.\n\nMy drive to untangle complex information and build seamless data pipelines comes from a familiar place: the satisfaction of perfectly aligning a Rubik’s cube. I look for the most efficient, elegant patterns to organize data, rather than just writing code.\n\nWhen it comes to tackling high-stakes projects or diving into new challenges, I pull directly from the strategic mindset and split-second adaptability required in competitive eSports like Valorant and BGMI. The focus needed to clutch a round translates directly into how I solve problems and troubleshoot under pressure—a resilience I’ve put to the test by balancing my final-year studies with a demanding night-shift role.\n\nTo keep my collaborative edge and agility sharp, I look to my time on the football pitch and the badminton court. For me, the energy, teamwork, and tactics used in play are the exact tools I need to innovate and succeed in data engineering.",
+    professionalIntro: "I am Harsh Mankar, a Data Engineer focused on building resilient and efficient data systems. I specialize in pipeline development, troubleshooting, and performance under pressure. I bring a strategic, disciplined approach to complex tasks and work collaboratively to deliver scalable solutions with dependable execution and strong engineering quality.",
     technicalSkills: []
   },
   {
     id: 'shivansh-dwivedi',
     name: 'Shivansh Dwivedi',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '95896 49340',
     dateOfJoining: '21 July 2025',
     timeZone: 'Night',
-    photo: asset('shivansh.png'),
+    photo: '/asset/shivansh.png',
     keySkills: [
       'AWS', 'Azure', 'Databrick', 'Pyspark', 'Snowflack', 'Python', 'Sql', 'Terraform', 'docker', 'git', 'powerbi', 'Tablue', 'Excel'
     ],
@@ -167,13 +168,14 @@ export const employees = [
   {
     id: 'akhil-shrivas',
     name: 'Akhil Shrivas',
-    jobTitle: 'Associate data Engineer -Intern',
+    jobTitle: 'ADE-1',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '72239 43707',
     dateOfJoining: '1 September 2025',
+    dateOfBirth: '28 Jul 2004',
     timeZone: 'Evening',
-    photo: asset('akhil.png'),
+    photo: '/asset/akhil.png',
     keySkills: [
       'Cloud Platforms: Azure (Data Factory, Synapse, Blob Storage), AWS, Snowflake',
       'ETL/ELT Tools: dbt, Apache Airflow, GitHub Actions (CI/CD)',
@@ -184,19 +186,20 @@ export const employees = [
       'Tools & Visualization: Tableau, Power BI',
       'Other Tools: Git, Web Scraping (BeautifulSoup, Scrapy), API Testing'
     ],
-    professionalIntro: "Hi, I’m Akhil Shrivas, a Data Engineer who enjoys turning messy, scattered data into structured systems that actually make sense.\n\nFor me, working with data feels a lot like solving a puzzle. I don’t just focus on writing code, I focus on finding patterns, optimizing flows, and building pipelines that are clean, efficient, and reliable. There’s a certain satisfaction in seeing raw data transform into something meaningful, something that can actually drive decisions.\n\nThat mindset also comes from how I approach challenges outside of tech. Whether it’s learning something new or debugging a system that refuses to work, I stay patient and persistent. I enjoy breaking down complex problems step by step until everything clicks.\n\nI’ve built projects like an e-commerce recommendation system and worked on data-driven applications where I handled everything from data processing to backend integration. These experiences taught me how to think beyond just implementation and focus on building systems that scale and perform well.\n\nAt the core, I like working on problems where logic, creativity, and real-world impact come together. That’s what keeps me curious and constantly improving in data engineering.",
+    professionalIntro: "Hi, I’m Akhil Shrivas, a Data Engineer who transforms scattered data into structured, reliable systems. I focus on clean pipeline design, optimization, and scalable implementation. I enjoy solving complex problems step by step and building practical solutions that improve decisions, performance, and real business outcomes.",
     technicalSkills: []
   },
   {
     id: 'anup-soni',
     name: 'Anup Soni',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'ADE-1',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '96913 79799',
     dateOfJoining: '29 December 2025',
-    timeZone: 'Intern',
-    photo: asset('anup.png'),
+    dateOfBirth: '05 Sep 2004',
+    timeZone: 'Evening',
+    photo: '/asset/anup.png',
     keySkills: [
       'Cloud & Data Platforms- AWS, Azure',
       'Data Engineering- ETL/ELT: ADF, AWS Glue, Apache Airflow',
@@ -205,19 +208,20 @@ export const employees = [
       'Data & ML- Pandas, NumPy, Scikit-learn, Tensorflow',
       'Visualization & Tools- Power BI, Tableau, Git, API Testing, Web Scraping'
     ],
-    professionalIntro: "Hi, I’m Anup Soni — a developer who enjoys solving real-world problems by building systems that are both efficient and precise.\n\nI’ve always been drawn to optimization — whether it’s refining a UI down to the smallest detail or structuring data pipelines to run faster and cleaner. That mindset comes from the same place as competitive gaming, where every decision matters. Games like BGMI and CODM have trained me to stay sharp under pressure, adapt quickly, and make decisions that actually work in real time — not just in theory.\n\nThat same approach carries into my work. Whether I’m handling tight deadlines, night-shift delivery cycles, or building full-stack applications, I focus on eliminating friction — in code, in data, and in user experience.\n\nI work across both data engineering and full-stack development, which allows me to think beyond isolated components and build complete, usable systems. For me, it’s not just about writing code — it’s about delivering something that actually solves a problem cleanly and reliably.",
+    professionalIntro: "Hi, I’m Anup Soni, a developer focused on solving real-world problems through efficient systems. I work across data engineering and full-stack development with strong emphasis on optimization and clean execution. I adapt quickly under pressure and build practical solutions that are reliable, scalable, and user-focused in production.",
     technicalSkills: []
   },
   {
     id: 'bharti-bisen',
     name: 'Bharti Bisen',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'ADE-1',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '89897 65852',
     dateOfJoining: '20 November 2025',
+    dateOfBirth: '09 Oct 2005',
     timeZone: 'Evening',
-    photo: asset('bharti-bisen.png'),
+    photo: '/asset/bharti-bisen.png',
     keySkills: [
       'Cloud Platforms: AWS- S3, Glue, Lambda, Athena , Redshift, SNS, Cloud Watch, Step Functions',
       'Microsoft Azure- ADF, Azure Data Lakes, Databricks, Synapse, Azure Devops',
@@ -232,13 +236,14 @@ export const employees = [
   {
     id: 'muskan-mahalwar',
     name: 'Muskan Mahalwar',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '7489 157 447',
     dateOfJoining: '20 November 2025',
+    dateOfBirth: '12 Mar 2004',
     timeZone: 'Night',
-    photo: asset('muskan.png'),
+    photo: '/asset/muskan.png',
     keySkills: [
       'Programming & Data Processing- Python (NumPy, Pandas, Matplotlib, Seaborn), PySpark, Scala',
       'Database & Query Languages- SQL, NoSQL Databases, Microsoft SQL Server (SSMS, SSIS)',
@@ -253,13 +258,14 @@ export const employees = [
   {
     id: 'aryan-sharma',
     name: 'Aryan Sharma',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '62029 04532',
     dateOfJoining: '2nd February 2026',
-    timeZone: 'Intern',
-    photo: asset('aryan.png'),
+    dateOfBirth: '23 Oct 2005',
+    timeZone: 'Night',
+    photo: '/asset/aryan.png',
     keySkills: [
       'Programming Languages- Python, SQL, Java, Kotlin',
       'Frameworks & Backend Development- Django REST Framework, FastAPI, Spring Core, Spring Data JPA, Hibernate, Java Servlets, Microservices Architecture',
@@ -269,83 +275,88 @@ export const employees = [
       'Visualization Tools- Power BI, Tableau',
       'Cloud Platforms- Amazon Web Services (AWS), Microsoft Azure'
     ],
-    professionalIntro: "I’m Aryan Sharma, a developer focused on solving real-world problems by building efficient, scalable, and reliable systems across data engineering, backend development, and AI.\n\nI have hands-on experience working with modern technologies like AWS, Azure, Databricks, Apache Airflow, and Kafka, where I design and optimize data pipelines and distributed systems. On the backend side, I build robust APIs and services using Django REST Framework and FastAPI, along with experience in Java-based frameworks like Spring Boot, Spring Data JPA, and Hibernate.\n\nMy core strength lies in system optimization and scalability, whether it's improving ETL workflows, handling large datasets, or designing clean microservices architectures. I enjoy writing efficient code and building systems that are not only functional but also maintainable and production-ready.\n\nI’ve worked with databases such as MySQL, Oracle, and AWS RDS, and data platforms like Snowflake, Azure Data Lake, and AWS S3, which helps me bridge the gap between data engineering and backend systems.\n\nBeyond technical skills, I’m deeply curious about how systems interact with users, which helps me build more practical and user-focused solutions. I’m always exploring new technologies and continuously improving my problem-solving approach.",
+    professionalIntro: "I’m Aryan Sharma, a developer focused on building scalable systems across data engineering, backend, and AI. I design optimized pipelines and robust APIs using modern cloud and framework tools. My strength is writing maintainable, production-ready solutions that solve practical business problems and support long-term performance.",
     technicalSkills: []
   },
   {
     id: 'shailesh-sahu',
     name: 'Shailesh Sahu',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '79875 61495',
     dateOfJoining: '2nd February 2026',
+    dateOfBirth: '12 May 2004',
     timeZone: 'Night',
-    photo: asset('shailesh.png'),
+    photo: '/asset/shailesh.png',
     keySkills: [
       'AWS', 'azure', 'Databricks', 'airflow', 'kafka', 'python', 'SQL', 'LangChain', 'langGraph', 'microsoft fabric', 'Django', 'fastAPI', 'Snowflake', 'SSIS', 'SSMS', 'ML', 'DL'
     ],
-    professionalIntro: "I’m a developer focused on solving real-world problems by building efficient and reliable systems across data engineering, backend, and AI. I work with tools like AWS, Azure, Databricks, Airflow, Kafka, and also build APIs using Django and FastAPI.\n\nI enjoy optimizing systems, whether it’s improving data pipelines or creating clean, scalable services. I’m also passionate about learning new technologies and understanding how people interact with systems, which helps me build more practical solutions.\n\nOutside of work, I enjoy watching anime, and overall I like staying curious and continuously improving in what I do.",
+    professionalIntro: "I’m a developer focused on building efficient systems across data engineering, backend, and AI. I work with AWS, Azure, Databricks, Airflow, Kafka, Django, and FastAPI to create scalable solutions. I enjoy optimization, continuous learning, and delivering practical systems that solve real user and business problems.",
     technicalSkills: []
   },
   {
     id: 'anita-pandey',
     name: 'Anita Pandey',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '7489 701 579',
     dateOfJoining: '9 February 2026',
+    dateOfBirth: '24 Mar 2002',
     timeZone: 'Morning',
-    photo: asset('anita.png'),
+    photo: '/asset/anita.png',
     keySkills: [
       'Python', 'SQL', 'snowflake', 'AWS (S3,glue)', 'SQL', 'Power BI', 'Tableau'
     ],
-    professionalIntro: "I am a motivated and curious individual who enjoys solving problems and finding practical solutions. I like learning new things and improving myself continuously. I pay attention to details and adapt easily to different situations. Outside of work, I love dancing as it helps me express myself, and I enjoy traveling to explore new places, cultures, and experiences, which gives me fresh perspectives and keeps me inspired.",
+    professionalIntro: "I am a motivated and curious professional who enjoys solving practical problems and learning continuously. I pay close attention to detail, adapt quickly to changing situations, and contribute with a positive mindset. I focus on steady improvement and delivering dependable outcomes through disciplined, collaborative work.",
     technicalSkills: []
   },
   {
     id: 'mohd-rizwan-ahmed',
     name: 'Mohd. Rizwan Ahmed',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '88716 29600',
     dateOfJoining: '3 February 2026',
+    dateOfBirth: '25 Aug 1996',
     timeZone: 'Morning',
-    photo: asset('rizwan.png'),
+    photo: '/asset/rizwan.png',
     keySkills: [
       'Snowflake', 'Databricks', 'Apache Airflow', 'Azure(Virtual machine, Data Factory, Synapse)', 'AWS(EC2, S3, RDS, Athena, Redshift, GLUE)', 'Microsoft Fabric', 'Power BI'
     ],
-    professionalIntro: "Hello, I am Rizwan, a Data Engineer with over 5+ years of experience, I specialize in building scalable data pipelines using tools like Snowflake, Databricks and Apache Airflow.\n\nMy expertise spans across multiple-cloud environments include Azure and AWS.\n\napart of that I have a strong command of SQL and have successfully delivered multiple projects, primarily in the Healthcare and E-commerce domains.",
+    professionalIntro: "Hello, I am Rizwan, an Associate Data Engineer focused on building and optimizing scalable data pipelines. I work with technologies like Snowflake, Databricks, and Airflow in both Azure and AWS environments. With a strong foundation in SQL, I am committed to delivering reliable data solutions and contributing to impactful projects through consistent and high-quality execution.",
     technicalSkills: []
   },
   {
     id: 'harsh-pal',
     name: 'Harsh Pal',
-    jobTitle: 'Associate Data Engineer- Intern',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '79834 47762',
     dateOfJoining: '3 February 2026',
+    dateOfBirth: '06 Oct 2001',
     timeZone: 'Morning',
-    photo: asset('harsh-pal.png'),
+    photo: '/asset/harsh-pal.png',
     keySkills: [
       'Aws', 'Azure', 'Data bricks', 'Snowflake', 'ML', 'DL', 'LLM', 'SQL servers'
     ],
-    professionalIntro: "Data Scientist and Full-Stack Developer with experience in machine learning, data analysis, and web development. I enjoy building practical, scalable solutions and have achieved strong results in real-world projects, including a high-ranking Kaggle competition. I work across both backend and frontend, bringing ideas to life end-to-end. Outside work, I enjoy playing music, watching movies, staying active, and traveling on my bike, exploring new places and experiences.",
+    professionalIntro: "I am a Data Scientist and Full-Stack Developer with experience in machine learning, analytics, and web development. I build practical, scalable solutions across backend and frontend systems. I focus on end-to-end execution, measurable outcomes, and turning ideas into reliable products used in real-world scenarios.",
     technicalSkills: []
   },
   {
     id: 'akash-soni',
     name: 'Akash Soni',
-    jobTitle: 'Associate Data Engineer- Trainee',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '93400 56291',
     dateOfJoining: '25 February 2026',
+    dateOfBirth: '18 Feb 2002',
     timeZone: 'Morning',
-    photo: asset('akash.png'),
+    photo: '/asset/akash.png',
     keySkills: [
       'Programming & Querying: Python, PySpark, Pandas, NumPy, Matplot',
       'Data Visualization Tools: Power BI, Tableau, Advanced MS Excel',
@@ -353,19 +364,20 @@ export const employees = [
       'Web Technologies: Databricks, Snowflake, Apache Kafka, Docker, Airflow',
       'Cloud Technologies: AWS, Azure, Google Cloud'
     ],
-    professionalIntro: "As a Data Engineer Intern with a B.Tech in Electronics and Communications who discovered a strong passion for the data domain and built hands-on experience across the full data stack. Skilled at data cleaning, EDA, ETL, and insight generation, I bring a sharp eye for turning raw data into meaningful stories. Certified by Accenture and Deloitte, I'm driven to grow and contribute in data-driven environments.",
+    professionalIntro: "I am a Data Engineer trainee with hands-on experience across the data stack. I work on data cleaning, EDA, ETL, and insight generation to turn raw data into meaningful outcomes. I am focused on continuous learning and contributing effectively in data-driven environments through practical execution.",
     technicalSkills: []
   },
   {
     id: 'sakshi-sahu',
     name: 'Sakshi Sahu',
-    jobTitle: 'Associate Data Engineer- Trainee',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '72250 76506',
     dateOfJoining: '23 February 2025',
+    dateOfBirth: '13 Dec 2003',
     timeZone: 'Morning',
-    photo: asset('sakshi.png'),
+    photo: '/asset/sakshi.png',
     keySkills: [
       'Data Engineering', 'Data Analytics', 'Machine Learning', 'Python', 'SQL', 'Kafka', 'Airflow', 'Databricks', 'Microsoft Fabric', 'Snowflake', 'Power BI', 'SSMS', 'SSIS', 'FastAPI', 'and cloud platforms like Azure and AWS'
     ],
@@ -375,19 +387,20 @@ export const employees = [
   {
     id: 'anurag-sathe',
     name: 'Anurag Sathe',
-    jobTitle: 'Associate Data Engineer - Trainee',
+    jobTitle: 'Associate Data Engineer',
     department: 'Engineering',
     location: 'Bhopal, MP',
     contact: '62668 85103',
     dateOfJoining: '23 February 2026',
+    dateOfBirth: '28 Jan 2004',
     timeZone: 'Morning',
-    photo: asset('anurag.png'),
+    photo: '/asset/anurag.png',
 
     keySkills: [
       'Python', 'SQL', 'Generative AI', 'LLMs & RAG', 'LangChain', 'LangGraph', 'Data Engineering', 'Apache Spark', 'FastAPI', 'AWS', 'Azure', 'Databricks', 'Snowflake', 'Vector DBs', 'Docker'
     ],
 
-    professionalIntro: "Hi, I’m Anurag. I’m an AI and Data Engineer who loves building intelligent, scalable systems that solve real-world problems.\n\nI specialize in connecting advanced AI models with robust data infrastructure. Whether it’s creating ETL pipelines in Spark, designing agentic workflows using LangChain, or building API-driven backends with FastAPI, I focus on writing clean, efficient, and production-ready code.\n\nOutside of work, I stay curious and am always exploring the latest in AI and tech to continuously improve and build meaningful solutions.",
+    professionalIntro: "Hi, I’m Anurag, an AI and Data Engineer focused on building intelligent, scalable systems. I connect advanced AI workflows with robust data infrastructure through ETL pipelines and API-driven services. I prioritize clean, production-ready code and continuously improve through hands-on exploration of modern AI technologies.",
 
     technicalSkills: []
   }

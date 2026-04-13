@@ -1,76 +1,265 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { employees } from '../data/employees'
+const cloudNexusLogo = '/asset/favicon.png'
 
 function getPhoto(emp) {
   return emp.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(emp.name)}&background=15151f&color=0cf&size=128&font-size=0.4&bold=true`
 }
 
-const sdeIds = ['pratiksha-nishad', 'harsh-mankar']
+const sdeIds = ['pratiksha-nishad', 'harsh-mankar', 'anup-soni', 'akhil-shrivas', 'bharti-bisen']
 
 const internIds = [
-  'shivansh-dwivedi', 'akhil-shrivas',
-  'anup-soni', 'bharti-bisen', 'muskan-mahalwar',
+  'shivansh-dwivedi', 'muskan-mahalwar',
   'aryan-sharma', 'anita-pandey', 'harsh-pal',
-  'mohd-rizwan-ahmed', 'shailesh-sahu'
+  'mohd-rizwan-ahmed', 'shailesh-sahu',
+  'anurag-sathe', 'sakshi-sahu'
 ]
 
 const traineeIds = [
-  'anurag-sathe', 'akash-soni', 'sakshi-sahu'
+  'akash-soni'
 ]
 
 function shortRole(title) {
-  if (title.includes('Trainee')) return 'Trainee'
-  if (title.includes('Intern')) return 'Intern'
-  if (title.includes('(SDE-1)')) return 'SDE-1'
+  if (title === 'ADE-1') return 'ADE-1'
+  if (title === 'Associate Data Engineer') return 'Associate Data Engineer'
   if (title.includes('Lead')) return 'Team Lead'
   if (title.includes('RevOps') || title.includes('Revenue')) return 'Revenue Operations (...'
   if (title.includes('Software Development')) return 'Software Developme...'
   return title.length > 22 ? title.slice(0, 20) + '...' : title
 }
 
+function normalizeSkills(skills = []) {
+  const expanded = skills
+    .flatMap((raw) => {
+      const text = String(raw || '').replace(/\s+/g, ' ').trim()
+      if (!text) return []
+
+      const value = text.includes(':') ? text.split(':').slice(1).join(':').trim() : text
+      return value
+        .split(',')
+        .map(part => part.trim())
+        .filter(Boolean)
+    })
+    .map((skill) => skill.replace(/^[\-–•]\s*/, '').trim())
+    .map((skill) => skill.replace(/\.$/, '').trim())
+    .filter(skill => skill.length > 1)
+
+  const unique = []
+  const seen = new Set()
+
+  for (const skill of expanded) {
+    const key = skill.toLowerCase()
+    if (seen.has(key)) continue
+    seen.add(key)
+    unique.push(skill)
+    if (unique.length >= 14) break
+  }
+
+  return unique
+}
+
 const TeamDirectory = () => {
+  const navigate = useNavigate()
+  const { id: selectedMemberId } = useParams()
   const ceo = employees.find(e => e.id === 'kaustubh-singh')
   const cto = employees.find(e => e.id === 'yash-singh')
   const techHead = employees.find(e => e.id === 'shoaib-akhtar')
   const tl = employees.find(e => e.id === 'arhan-mansoori')
   const revOps = employees.find(e => e.id === 'ritu-waghmare')
 
+  const [query, setQuery] = useState('')
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [zoomedImage, setZoomedImage] = useState(null)
+
+  const matches = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return []
+    return employees
+      .filter(e => e?.name?.toLowerCase().includes(q))
+      .slice(0, 8)
+  }, [query])
+
+  const goToEmployee = (emp) => {
+    if (!emp?.id) return
+    setIsSearchOpen(false)
+    setQuery('')
+    navigate(`/profile/${emp.id}`)
+  }
+
   const sdeGroup = sdeIds.map(id => employees.find(e => e.id === id)).filter(Boolean)
   const internGroup = internIds.map(id => employees.find(e => e.id === id)).filter(Boolean)
   const traineeGroup = traineeIds.map(id => employees.find(e => e.id === id)).filter(Boolean)
+  const leadershipMembers = [ceo, cto].filter(Boolean)
+  const technologyMembers = [techHead, tl].filter(Boolean)
+  const revenueOpsMembers = [revOps].filter(Boolean)
+  const adeMembers = sdeGroup
+  const associateDataEngineers = [...internGroup, ...traineeGroup]
+
+  useEffect(() => {
+    if (!selectedMemberId) return
+    const target = document.querySelector(`[data-member-id="${selectedMemberId}"]`)
+    if (!target) return
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 120)
+  }, [selectedMemberId])
+
+  const renderOrgCard = (member) => {
+    const skills = normalizeSkills(Array.isArray(member.keySkills) ? member.keySkills : [])
+    const photoUrl = getPhoto(member) 
+    return (
+      <Link
+        key={member.id}
+        to={`/profile/${member.id}`}
+        data-member-id={member.id}
+        className={`org-member-card${selectedMemberId === member.id ? ' is-active' : ''}`}
+      >
+        <div className="org-member-top">
+          <div className="org-member-photo" onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            setZoomedImage({ url: photoUrl, name: member.name })
+          }}>
+            <img src={photoUrl} alt={member.name} />
+          </div>
+          <div>
+            <div className="org-member-name">{member.name}</div>
+            <div className="org-member-role-full">{member.jobTitle || 'Team Member'}</div>
+            <div className="org-member-dept">{member.department || 'CloudNexus'}</div>
+          </div>
+        </div>
+
+        <div className="org-member-divider" />
+
+        <div className="org-member-facts">
+          <div className="org-member-fact"><strong>Location</strong><span>{member.location || 'N/A'}</span></div>
+          <div className="org-member-fact"><strong>Contact</strong><span>{member.contact || 'N/A'}</span></div>
+          <div className="org-member-fact"><strong>Date of joining</strong><span>{member.dateOfJoining || 'N/A'}</span></div>
+          {member.dateOfBirth && (
+            <div className="org-member-fact"><strong>DOB</strong><span>{member.dateOfBirth}</span></div>
+          )}
+          <div className="org-member-fact"><strong>Timezone</strong><span>{member.timeZone || 'N/A'}</span></div>
+        </div>
+
+        <div className="org-member-subtitle">Key Skills</div>
+        <div className="org-member-skills">
+          {skills.length ? (
+            skills.map((skill) => (
+              <span key={skill} className="org-member-skill">{skill}</span>
+            ))
+          ) : (
+            <span className="org-member-empty">Not listed</span>
+          )}
+        </div>
+
+        <div className="org-member-subtitle">Introduction</div>
+        <p className="org-member-intro">{member.professionalIntro || 'No introduction provided yet.'}</p>
+
+      </Link>
+    )
+  }
 
   return (
     <div className="main-page">
-      {/* Top Bar */}
-      <div className="top-bar">
-        <div className="logo">
-          <div className="logo-icon">CN</div>
-          <span>CloudNexus</span>
-        </div>
-        <div className="nav-links">
-          <a href="#team" className="active">Team</a>
-          <a href="#about">About</a>
-          <a href="#vision">Vision</a>
-        </div>
-      </div>
+      {/* Header (brand + search) */}
+      <header className="site-header">
+        <div className="site-header-inner">
+          <div className="brand-block">
+            <div className="brand-logo">
+              <img src={cloudNexusLogo} alt="CloudNexus logo" />
+            </div>
+            <div className="brand-meta">
+              <div className="brand-kicker">CLOUDNEXUS</div>
+              <div className="brand-title">Know Your Team – CN Eternals</div>
+              <div className="brand-subtitle">People, roles, and how to connect</div>
+            </div>
+          </div>
 
-      {/* Hero */}
-      <div className="hero" id="team">
-        <h1>Know Your Team – CN Eternals</h1>
-        <p>People, roles and how to connect.</p>
-      </div>
+          <div className="header-actions">
+            <a
+              className="company-pill"
+              href="https://www.cloudnexus.in/"
+              target="_blank"
+              rel="noreferrer"
+              title="Visit cloudnexus.in"
+            >
+              Visit <span>cloudnexus.in</span>
+            </a>
+
+            <div className="employee-search">
+              <div className="search-input-wrap">
+                <span className="search-icon" aria-hidden="true">⌕</span>
+                <input
+                  className="search-input"
+                  value={query}
+                  placeholder="Search by name"
+                  onChange={(e) => {
+                    setQuery(e.target.value)
+                    setIsSearchOpen(true)
+                  }}
+                  onFocus={() => setIsSearchOpen(true)}
+                  onBlur={() => {
+                    // allow click selection before closing
+                    window.setTimeout(() => setIsSearchOpen(false), 120)
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') {
+                      setIsSearchOpen(false)
+                      e.currentTarget.blur()
+                    }
+                    if (e.key === 'Enter' && matches[0]) {
+                      goToEmployee(matches[0])
+                    }
+                  }}
+                />
+              </div>
+
+              {isSearchOpen && query.trim() && (
+                <div className="search-dropdown" role="listbox" aria-label="Employee results">
+                  {matches.length ? (
+                    matches.map(emp => (
+                      <button
+                        key={emp.id}
+                        type="button"
+                        className="search-item"
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => goToEmployee(emp)}
+                      >
+                        <span className="search-item-avatar">
+                          <img src={getPhoto(emp)} alt="" />
+                        </span>
+                        <span className="search-item-text">
+                          <span className="search-item-name">{emp.name}</span>
+                          <span className="search-item-role">{shortRole(emp.jobTitle || '')}</span>
+                        </span>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="search-empty">No employees found.</div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="header-divider" />
+      </header>
 
       {/* ========== ORG TREE (exact hierarchy) ========== */}
-      <div className="org-tree-container">
+      <div className="org-tree-container" id="team">
         <ul className="org-tree">
           {/* Level 1: CEO */}
           {ceo && (
             <li>
               <Link to={`/profile/${ceo.id}`} className="node ceo-node">
-                <div className="node-photo"><img src={getPhoto(ceo)} alt={ceo.name} /></div>
+                <div className="node-photo" onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  setZoomedImage({ url: getPhoto(ceo), name: ceo.name })
+                }}><img src={getPhoto(ceo)} alt={ceo.name} /></div>
                 <div className="node-name">{ceo.name}</div>
-                <div className="node-role">Founder & CEO</div>
+                <div className="node-role">{ceo.jobTitle}</div>
               </Link>
 
               <ul>
@@ -78,9 +267,13 @@ const TeamDirectory = () => {
                 {cto && (
                   <li>
                     <Link to={`/profile/${cto.id}`} className="node cto-node">
-                      <div className="node-photo"><img src={getPhoto(cto)} alt={cto.name} /></div>
+                      <div className="node-photo" onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        setZoomedImage({ url: getPhoto(cto), name: cto.name })
+                      }}><img src={getPhoto(cto)} alt={cto.name} /></div>
                       <div className="node-name">{cto.name}</div>
-                      <div className="node-role">CTO</div>
+                      <div className="node-role">{cto.jobTitle}</div>
                     </Link>
 
                     <ul>
@@ -88,9 +281,13 @@ const TeamDirectory = () => {
                       {techHead && (
                         <li>
                           <Link to={`/profile/${techHead.id}`} className="node cto-node">
-                            <div className="node-photo"><img src={getPhoto(techHead)} alt={techHead.name} /></div>
+                            <div className="node-photo" onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              setZoomedImage({ url: getPhoto(techHead), name: techHead.name })
+                            }}><img src={getPhoto(techHead)} alt={techHead.name} /></div>
                             <div className="node-name">{techHead.name}</div>
-                            <div className="node-role">Technical Head</div>
+                            <div className="node-role">{techHead.jobTitle}</div>
                           </Link>
 
                           <ul>
@@ -100,9 +297,13 @@ const TeamDirectory = () => {
                                 {/* Sub-level trunk: Arhan (Team Lead) */}
                                 {tl && (
                                   <Link to={`/profile/${tl.id}`} className="node tl-node">
-                                    <div className="node-photo"><img src={getPhoto(tl)} alt={tl.name} /></div>
+                                    <div className="node-photo" onClick={(e) => {
+                                      e.preventDefault()
+                                      e.stopPropagation()
+                                      setZoomedImage({ url: getPhoto(tl), name: tl.name })
+                                    }}><img src={getPhoto(tl)} alt={tl.name} /></div>
                                     <div className="node-name">{tl.name}</div>
-                                    <div className="node-role">Team Lead</div>
+                                    <div className="node-role">{tl.jobTitle}</div>
                                   </Link>
                                 )}
 
@@ -112,9 +313,13 @@ const TeamDirectory = () => {
                                     <div className="prachi-h-line" />
                                     <div className="prachi-v-line" />
                                     <Link to={`/profile/${revOps.id}`} className="node revops-node">
-                                      <div className="node-photo"><img src={getPhoto(revOps)} alt={revOps.name} /></div>
+                                      <div className="node-photo" onClick={(e) => {
+                                        e.preventDefault()
+                                        e.stopPropagation()
+                                        setZoomedImage({ url: getPhoto(revOps), name: revOps.name })
+                                      }}><img src={getPhoto(revOps)} alt={revOps.name} /></div>
                                       <div className="node-name">{revOps.name}</div>
-                                      <div className="node-role">Revenue Operations (...</div>
+                                      <div className="node-role">{revOps.jobTitle}</div>
                                     </Link>
                                   </div>
                                 )}
@@ -124,11 +329,14 @@ const TeamDirectory = () => {
                               <ul className="teams-row">
                                 <li>
                                   <div className="team-group group-sde">
-                                    <div className="team-group-label">ADE-1</div>
                                     <div className="team-group-grid">
                                       {sdeGroup.map(m => (
                                         <Link key={m.id} to={`/profile/${m.id}`} className="team-member">
-                                          <div className="tm-photo">
+                                          <div className="tm-photo" onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            setZoomedImage({ url: getPhoto(m), name: m.name })
+                                          }}>
                                             <img src={getPhoto(m)} alt={m.name} />
                                           </div>
                                           <div className="tm-name">{m.name}</div>
@@ -140,11 +348,14 @@ const TeamDirectory = () => {
                                 </li>
                                 <li>
                                   <div className="team-group group-intern">
-                                    <div className="team-group-label">INTERNS</div>
                                     <div className="team-group-grid">
                                       {internGroup.map(m => (
                                         <Link key={m.id} to={`/profile/${m.id}`} className="team-member">
-                                          <div className="tm-photo">
+                                          <div className="tm-photo" onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            setZoomedImage({ url: getPhoto(m), name: m.name })
+                                          }}>
                                             <img src={getPhoto(m)} alt={m.name} />
                                           </div>
                                           <div className="tm-name">{m.name}</div>
@@ -156,11 +367,14 @@ const TeamDirectory = () => {
                                 </li>
                                 <li>
                                   <div className="team-group group-trainee">
-                                    <div className="team-group-label">TRAINEES</div>
                                     <div className="team-group-grid">
                                       {traineeGroup.map(m => (
                                         <Link key={m.id} to={`/profile/${m.id}`} className="team-member">
-                                          <div className="tm-photo">
+                                          <div className="tm-photo" onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            setZoomedImage({ url: getPhoto(m), name: m.name })
+                                          }}>
                                             <img src={getPhoto(m)} alt={m.name} />
                                           </div>
                                           <div className="tm-name">{m.name}</div>
@@ -182,6 +396,64 @@ const TeamDirectory = () => {
             </li>
           )}
         </ul>
+      </div>
+
+      {/* ORG DIRECTORY CARDS (profile-driven) */}
+      <div className="org-cards-section">
+        <div className="org-cards-header">
+          <h3>Team directory</h3>
+          <p>Showing all CloudNexus team members grouped by hierarchy.</p>
+        </div>
+
+        <div className="org-cards-group">
+          <div className="org-cards-group-head">
+            <h4>Leadership</h4>
+            <span>{leadershipMembers.length} people</span>
+          </div>
+          <div className="org-cards-grid">
+            {leadershipMembers.map(renderOrgCard)}
+          </div>
+        </div>
+
+        <div className="org-cards-group">
+          <div className="org-cards-group-head">
+            <h4>Technology</h4>
+            <span>{technologyMembers.length} people</span>
+          </div>
+          <div className="org-cards-grid">
+            {technologyMembers.map(renderOrgCard)}
+          </div>
+        </div>
+
+        <div className="org-cards-group">
+          <div className="org-cards-group-head">
+            <h4>Revenue Operations</h4>
+            <span>{revenueOpsMembers.length} people</span>
+          </div>
+          <div className="org-cards-grid">
+            {revenueOpsMembers.map(renderOrgCard)}
+          </div>
+        </div>
+
+        <div className="org-cards-group">
+          <div className="org-cards-group-head">
+            <h4>ADE-1</h4>
+            <span>{adeMembers.length} people</span>
+          </div>
+          <div className="org-cards-grid">
+            {adeMembers.map(renderOrgCard)}
+          </div>
+        </div>
+
+        <div className="org-cards-group">
+          <div className="org-cards-group-head">
+            <h4>Associate Data Engineer</h4>
+            <span>{associateDataEngineers.length} people</span>
+          </div>
+          <div className="org-cards-grid">
+            {associateDataEngineers.map(renderOrgCard)}
+          </div>
+        </div>
       </div>
 
       {/* DIVIDER */}
@@ -256,9 +528,17 @@ const TeamDirectory = () => {
       {/* VISION & MISSION */}
       <div className="section" id="vision">
         <h2 className="section-title">Our <span>vision & mission</span></h2>
+        <div className="section-underline" />
         <div className="vm-grid">
           <div className="vm-card">
-            <h4><span className="vm-dot" style={{ background: '#0cf' }} /> VISION</h4>
+            <div className="vm-card-head vm-card-head-vision">
+              <div className="vm-icon vm-icon-vision" aria-hidden="true">
+                <span className="vm-icon-emoji">🌍</span>
+              </div>
+              <div className="vm-head-text">
+                <div className="vm-kicker">VISION</div>
+              </div>
+            </div>
             <p>
               To be the global leader in IT solutions and digital product innovation, empowering businesses with
               cutting-edge technology that enhances efficiency, scalability, and growth. At CloudNexus, we envision
@@ -266,7 +546,14 @@ const TeamDirectory = () => {
             </p>
           </div>
           <div className="vm-card">
-            <h4><span className="vm-dot" style={{ background: '#f44' }} /> MISSION</h4>
+            <div className="vm-card-head vm-card-head-mission">
+              <div className="vm-icon vm-icon-mission" aria-hidden="true">
+                <span className="vm-icon-emoji">🚀</span>
+              </div>
+              <div className="vm-head-text">
+                <div className="vm-kicker">MISSION</div>
+              </div>
+            </div>
             <ul>
               <li>Developing innovative, meaningful products and solutions that enable businesses to operate efficiently, delivering real value in today's evolving digital world.</li>
               <li>Fostering continuous collaboration by building reliable, scalable systems—creating intelligent and adaptable solutions tailored to each client's needs.</li>
@@ -278,15 +565,71 @@ const TeamDirectory = () => {
       </div>
 
       {/* FOOTER */}
-      <div className="site-footer">
-        <div className="footer-logo">CLOUDNEXUS</div>
-        <div className="footer-link">Know Your Team</div>
-        <div className="footer-socials">
-          <a href="https://www.linkedin.com/company/cloudnexusorg/posts/?feedView=all" title="LinkedIn">in</a>
-          <a href="#" title="Twitter">𝕏</a>
-          <a href="#" title="Instagram">ig</a>
+      <footer className="site-footer" aria-label="Footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <div className="footer-brand-logo" aria-hidden="true">
+              <img src={cloudNexusLogo} alt="" />
+            </div>
+            <div className="footer-brand-text">
+              <div className="footer-brand-name">CLOUDNEXUS</div>
+              <div className="footer-brand-sub">Know Your Team – CN Eternals</div>
+            </div>
+          </div>
+
+          <div className="footer-mid">
+            <a className="footer-pill" href="#team" title="Back to top">
+              Know Your Team
+            </a>
+            <div className="footer-links" aria-label="Quick links">
+              <a href="#about">About</a>
+              <a href="#vision">Vision</a>
+              <a href="https://www.cloudnexus.in/" target="_blank" rel="noreferrer">cloudnexus.in</a>
+            </div>
+          </div>
+
+          <div className="footer-socials" aria-label="Social links">
+            <a
+              className="footer-social"
+              href="https://www.linkedin.com/company/cloudnexusorg/?viewAsMember=true"
+              target="_blank"
+              rel="noreferrer"
+              title="LinkedIn"
+              aria-label="LinkedIn"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM.2 23.8h4.6V7.9H.2v15.9ZM8.1 7.9h4.4v2.2h.1c.6-1.2 2.1-2.5 4.4-2.5 4.7 0 5.6 3.1 5.6 7.1v9.1h-4.6v-8.1c0-1.9 0-4.4-2.7-4.4-2.7 0-3.1 2.1-3.1 4.2v8.3H8.1V7.9Z" />
+              </svg>
+            </a>
+            <a
+              className="footer-social"
+              href="https://www.instagram.com/cloudnexus.in/"
+              target="_blank"
+              rel="noreferrer"
+              title="Instagram"
+              aria-label="Instagram"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4A3.8 3.8 0 0 0 20 16.2V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm10.65 1.5a.85.85 0 1 1 0 1.7.85.85 0 0 1 0-1.7ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+              </svg>
+            </a>
+          </div>
         </div>
-      </div>
+      </footer>
+      {/* IMAGE ZOOM OVERLAY */}
+      {zoomedImage && (
+        <div className="image-zoom-overlay" onClick={() => setZoomedImage(null)}>
+          <div className="image-zoom-content">
+            <div className="image-zoom-frame">
+              <img src={zoomedImage.url} alt={zoomedImage.name} />
+            </div>
+          </div>
+          <div className="image-zoom-footer">
+            <div className="image-zoom-name">{zoomedImage.name}</div>
+            <div className="image-zoom-hint">Click anywhere to close</div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
